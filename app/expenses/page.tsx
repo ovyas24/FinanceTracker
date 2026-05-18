@@ -15,7 +15,7 @@ export default function ExpensesPage() {
   const [saving, setSaving] = useState(false)
   const [month, setMonth] = useState(format(new Date(),'yyyy-MM'))
   const [cat, setCat] = useState('')
-  const [form, setForm] = useState({ date:format(new Date(),'yyyy-MM-dd'), category:'Food & Dining', amount:'', note:'', payment_mode:'UPI' as const })
+  const [form, setForm] = useState<{ date:string; category:string; amount:string; note:string; payment_mode:typeof MODES[number] }>({ date:format(new Date(),'yyyy-MM-dd'), category:'Food & Dining', amount:'', note:'', payment_mode:'UPI' })
 
   async function load() {
     const d = await fetch('/api/expenses').then(r=>r.json())
